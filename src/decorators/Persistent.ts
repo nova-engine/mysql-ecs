@@ -2,40 +2,33 @@ import { Component, ComponentClass, Entity } from "@nova-engine/ecs";
 import { FieldOptions } from "./Field";
 import { DataTypes } from "../DataTypes";
 
-import * as extend from "extend";
 import * as pluralize from "pluralize";
 import * as s from "underscore.string";
 
+import {
+  ensurePersistentMetadata,
+  updatePersistentMetadata
+} from "../services/meta";
+
 interface PersistenceOptions {
-  tableName: string;
+  tableName: string | null;
   fields: { [name: string]: FieldOptions };
 }
 
-const PERSISTENCE_METADATA_KEY = "@nova-engine/mysql-ecs/persistent";
+interface PersistenceDecoratorOptions {
+  tableName: string;
+}
 
 function Persistent<T extends Component>(
-  options: Partial<PersistenceOptions> = {}
+  options: Partial<PersistenceDecoratorOptions> = {}
 ) {
   return (target: ComponentClass<T>) => {
-    const defaultOptions: PersistenceOptions = {
-      tableName: pluralize(s.underscored(s.trim(target.tag || target.name))),
-      fields: {
-        id: {
-          type: DataTypes.ID,
-          primaryKey: true,
-          allowNull: false,
-          autoIncrement: true
-        }
-      }
+    const defaultOptions = {
+      tableName: pluralize(s.underscored(s.trim(target.tag || target.name)))
     };
-    const instanceOptions = extend(true, {}, defaultOptions, options);
-    console.log("Persistent class added:", target.name);
-    Reflect.defineMetadata(
-      PERSISTENCE_METADATA_KEY,
-      instanceOptions,
-      target.prototype
-    );
+    updatePersistentMetadata(target.prototype, defaultOptions);
+    updatePersistentMetadata(target.prototype, options);
   };
 }
 
-export { Persistent, PersistenceOptions, PERSISTENCE_METADATA_KEY };
+export { Persistent, PersistenceOptions, PersistenceDecoratorOptions };
