@@ -10,6 +10,7 @@ import * as extend from "extend";
 
 interface FieldOptions {
   type: DataType;
+  property: string;
   primaryKey: boolean;
   allowNull: boolean;
   autoIncrement: boolean;
@@ -40,7 +41,8 @@ function Field(arg: Partial<FieldDecoratorOptions> | DataType = {}) {
     const metaOptions = extend(
       { type, primaryKey: false, allowNull: false, autoIncrement: false },
       defaultOptions,
-      options
+      options,
+      { property }
     );
     if (!column) {
       column = s.underscored(property);

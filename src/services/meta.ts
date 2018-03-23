@@ -15,6 +15,7 @@ function ensurePersistentMetadata(target: any) {
     fields: {
       id: {
         type: DataTypes.ID,
+        property: "id",
         primaryKey: true,
         allowNull: false,
         autoIncrement: true

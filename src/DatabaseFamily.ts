@@ -15,16 +15,20 @@ class DatabaseFamily implements Family {
   private readonly _database: Database;
   private readonly _include: ComponentClass<Component>[];
   private readonly _exclude: ComponentClass<Component>[];
+  private _cache: Entity[];
 
   constructor(options: DatabaseFamilyOptions) {
     this._database = options.database;
     this._include = (options.include || []).slice(0);
     this._exclude = (options.exclude || []).slice(0);
+    this._cache = [];
   }
 
   get entities() {
-    return [];
+    return this._cache;
   }
+
+  async findEntities() {}
 
   includesEntity = (entity: Entity) => {
     for (let include of this._include) {

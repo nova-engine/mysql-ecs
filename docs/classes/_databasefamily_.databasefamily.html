@@ -104,6 +104,7 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_databasefamily_.databasefamily.html#_cache" class="tsd-kind-icon">_cache</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_databasefamily_.databasefamily.html#_database" class="tsd-kind-icon">_database</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_databasefamily_.databasefamily.html#_exclude" class="tsd-kind-icon">_exclude</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_databasefamily_.databasefamily.html#_include" class="tsd-kind-icon">_include</a></li>
@@ -118,6 +119,7 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_databasefamily_.databasefamily.html#findentities" class="tsd-kind-icon">find<wbr>Entities</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_databasefamily_.databasefamily.html#includesentity" class="tsd-kind-icon">includes<wbr>Entity</a></li>
 							</ul>
 						</section>
@@ -136,7 +138,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/e95c750/src/DatabaseFamily.ts#L17">DatabaseFamily.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L18">DatabaseFamily.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -153,12 +155,22 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+					<a name="_cache" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _cache</h3>
+					<div class="tsd-signature tsd-kind-icon">_cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Entity</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L18">DatabaseFamily.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
 					<a name="_database" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _database</h3>
 					<div class="tsd-signature tsd-kind-icon">_database<span class="tsd-signature-symbol">:</span> <a href="_database_.database.html" class="tsd-signature-type">Database</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/e95c750/src/DatabaseFamily.ts#L15">DatabaseFamily.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L15">DatabaseFamily.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -168,7 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">_exclude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/e95c750/src/DatabaseFamily.ts#L17">DatabaseFamily.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L17">DatabaseFamily.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">_include<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/e95c750/src/DatabaseFamily.ts#L16">DatabaseFamily.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L16">DatabaseFamily.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,22 +201,39 @@
 					<a name="entities" class="tsd-anchor"></a>
 					<h3>entities</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> entities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> entities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Entity</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/e95c750/src/DatabaseFamily.ts#L25">DatabaseFamily.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L27">DatabaseFamily.ts:27</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Entity</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="findentities" class="tsd-anchor"></a>
+					<h3>find<wbr>Entities</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Entities<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L31">DatabaseFamily.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 					<a name="includesentity" class="tsd-anchor"></a>
 					<h3>includes<wbr>Entity</h3>
@@ -215,7 +244,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/e95c750/src/DatabaseFamily.ts#L29">DatabaseFamily.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6da228b/src/DatabaseFamily.ts#L33">DatabaseFamily.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -270,6 +299,9 @@
 								<a href="_databasefamily_.databasefamily.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+								<a href="_databasefamily_.databasefamily.html#_cache" class="tsd-kind-icon">_cache</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
 								<a href="_databasefamily_.databasefamily.html#_database" class="tsd-kind-icon">_database</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
@@ -280,6 +312,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_databasefamily_.databasefamily.html#entities" class="tsd-kind-icon">entities</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_databasefamily_.databasefamily.html#findentities" class="tsd-kind-icon">find<wbr>Entities</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_databasefamily_.databasefamily.html#includesentity" class="tsd-kind-icon">includes<wbr>Entity</a>
