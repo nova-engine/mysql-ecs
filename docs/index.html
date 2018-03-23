@@ -64,8 +64,63 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="mysql-ecs">mysql-ecs</h1>
+				<h1 id="nova-engine-entity-component-system-persistent-engine-mysql-">Nova Engine - Entity Component System Persistent Engine (MySQL)</h1>
 				<p>A Database persistence system for the Entities and Components in MySQL.</p>
+				<h2 id="installing">Installing</h2>
+				<pre><code class="lang-sh">npm i --save @nova-engine/mysql-ecs reflect-metadata mysql2
+</code></pre>
+				<h2 id="basic-use">Basic Use</h2>
+				<p>Enable decorators in your tsconfig.json:</p>
+				<pre><code class="lang-js">{
+    <span class="hljs-string">"compilerOptions"</span>: {
+        <span class="hljs-string">"experimentalDecorators"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">"emitDecoratorMetadata"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-comment">// ... more options ...</span>
+    }
+}
+</code></pre>
+				<p>When you define a Component using @nova-engine/ecs, you must do two things:</p>
+				<p>Add a <code>@Persistent()</code> decorator to your component class.
+				This means than your component must be stored in the database.</p>
+				<p>For each field you must preserve, add a <code>@Field()</code> tag.</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">"@nova-engine/ecs"</span>;
+<span class="hljs-keyword">import</span> { Persistent, Field } <span class="hljs-keyword">from</span> <span class="hljs-string">"@nova-engine/mysql-ecs"</span>;
+
+<span class="hljs-meta">@Persistent</span>()
+<span class="hljs-keyword">class</span> PersistentComponent <span class="hljs-keyword">implements</span> Component {
+  <span class="hljs-meta">@Field</span>() tag: <span class="hljs-built_in">string</span>;
+  <span class="hljs-meta">@Field</span>() x: <span class="hljs-built_in">number</span>;
+  <span class="hljs-meta">@Field</span>() y: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+				<p>The persistent engine will then underscore and pluralize your component name,
+				in this example <code>&quot;PersistentComponent&quot;</code> will become <code>&quot;persistent_components&quot;</code>.</p>
+				<p>The <code>@Field</code> decorator will try to detect the type automatically type.</p>
+				<p>Remember, properties without <code>@Field</code> decorator won&#39;t persisnt on the database.</p>
+				<p>After that, you create your database instance:</p>
+				<pre><code class="lang-ts"><span class="hljs-keyword">import</span> { Database } <span class="hljs-keyword">from</span> <span class="hljs-string">"@nova-engine/mysql-ecs"</span>;
+
+<span class="hljs-keyword">const</span> db = <span class="hljs-keyword">new</span> Database({
+  <span class="hljs-comment">/* options */</span>
+});
+</code></pre>
+				<p>And then you can simply CRUD your entities:</p>
+				<pre><code class="lang-ts"><span class="hljs-comment">// Convenience method to create a new empty entity and</span>
+<span class="hljs-comment">// store it on the database</span>
+<span class="hljs-comment">// Because of that, it will have an ID already generated for you.</span>
+db.create(entity);
+<span class="hljs-comment">// This will create a new entity if it doesn't exists, or</span>
+<span class="hljs-comment">// update the existent one.</span>
+db.save(entity);
+<span class="hljs-comment">// This will update your entity</span>
+<span class="hljs-comment">// It will throw an error if your entity is not previously saved</span>
+db.update(entity);
+<span class="hljs-comment">// Will remove the entity from the database</span>
+<span class="hljs-comment">// It will throw an error if the entity is not stored or is a new one</span>
+db.delete(entity);
+</code></pre>
+				<h2 id="license">License</h2>
+				<p>Apache 2.0</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -76,6 +131,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_datatypes_.html">"<wbr>Data<wbr>Types"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_database_.html">"<wbr>Database"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_decorators_field_.html">"decorators/<wbr>Field"</a>

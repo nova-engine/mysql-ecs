@@ -105,7 +105,7 @@
 					<div class="tsd-signature tsd-kind-icon">BLOB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;extend(() &#x3D;&gt; {}, {db: &quot;BLOB&quot;,async serialize(value: Buffer) {return value;},async deserialize(value: Buffer) {return value;}})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L91">DataTypes.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L91">DataTypes.ts:91</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -115,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">NUMBER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;extend((isFloat &#x3D; false) &#x3D;&gt; {return {db: isFloat ? &quot;FLOAT&quot; : &quot;DOUBLE&quot;,async serialize(value: number) {return value;},async deserialize(value: number) {return value;}};},{db: &quot;DOUBLE&quot;,async serialize(value: number) {return value;},async deserialize(value: number) {return value;}})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L30">DataTypes.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L30">DataTypes.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -125,7 +125,7 @@
 					<div class="tsd-signature tsd-kind-icon">STRING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;extend((length &#x3D; 255) &#x3D;&gt; {if (length &lt; 1 || length &gt; 255) {throw new Error(&quot;Database String types should be between 1 up to 255.\nIf you require bigger values consider using TEXT.&quot;);}return {db: &#x60;VARCHAR(${length})&#x60;,async serialize(value: string) {return value;},async deserialize(value: string) {return value;}};},{db: &quot;VARCHAR(255)&quot;,async serialize(value: string) {return value;},async deserialize(value: string) {return value;}})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L53">DataTypes.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L53">DataTypes.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -138,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">BOOLEAN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L20">DataTypes.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L20">DataTypes.ts:20</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -147,7 +147,7 @@
 						<div class="tsd-signature tsd-kind-icon">db<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ENUM(&#x27;Y&#x27;, &#x27;N&#x27;)&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L21">DataTypes.ts:21</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L21">DataTypes.ts:21</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -161,7 +161,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L25">DataTypes.ts:25</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L25">DataTypes.ts:25</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -184,7 +184,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L22">DataTypes.ts:22</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L22">DataTypes.ts:22</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -204,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">DATE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L81">DataTypes.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L81">DataTypes.ts:81</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -213,7 +213,7 @@
 						<div class="tsd-signature tsd-kind-icon">db<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;DATETIME&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L82">DataTypes.ts:82</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L82">DataTypes.ts:82</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -227,7 +227,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L86">DataTypes.ts:86</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L86">DataTypes.ts:86</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -250,7 +250,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L83">DataTypes.ts:83</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L83">DataTypes.ts:83</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -270,7 +270,7 @@
 					<div class="tsd-signature tsd-kind-icon">Data<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L111">DataTypes.ts:111</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L111">DataTypes.ts:111</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -279,7 +279,7 @@
 						<div class="tsd-signature tsd-kind-icon">BLOB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L118">DataTypes.ts:118</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L118">DataTypes.ts:118</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -289,7 +289,7 @@
 						<div class="tsd-signature tsd-kind-icon">BOOLEAN<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L115">DataTypes.ts:115</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L115">DataTypes.ts:115</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -307,7 +307,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L25">DataTypes.ts:25</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L25">DataTypes.ts:25</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -328,7 +328,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L22">DataTypes.ts:22</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L22">DataTypes.ts:22</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -349,7 +349,7 @@
 						<div class="tsd-signature tsd-kind-icon">DATE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L116">DataTypes.ts:116</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L116">DataTypes.ts:116</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -367,7 +367,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L86">DataTypes.ts:86</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L86">DataTypes.ts:86</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -388,7 +388,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L83">DataTypes.ts:83</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L83">DataTypes.ts:83</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -409,7 +409,7 @@
 						<div class="tsd-signature tsd-kind-icon">ID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L112">DataTypes.ts:112</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L112">DataTypes.ts:112</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -427,7 +427,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L15">DataTypes.ts:15</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L15">DataTypes.ts:15</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -448,7 +448,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L12">DataTypes.ts:12</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L12">DataTypes.ts:12</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -469,7 +469,7 @@
 						<div class="tsd-signature tsd-kind-icon">JSON<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;typeJSON</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L117">DataTypes.ts:117</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L117">DataTypes.ts:117</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-type-declaration">
@@ -487,7 +487,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L106">DataTypes.ts:106</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L106">DataTypes.ts:106</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -508,7 +508,7 @@
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L103">DataTypes.ts:103</a></li>
+													<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L103">DataTypes.ts:103</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -529,7 +529,7 @@
 						<div class="tsd-signature tsd-kind-icon">NUMBER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L113">DataTypes.ts:113</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L113">DataTypes.ts:113</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -539,7 +539,7 @@
 						<div class="tsd-signature tsd-kind-icon">STRING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L114">DataTypes.ts:114</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L114">DataTypes.ts:114</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -550,7 +550,7 @@
 					<div class="tsd-signature tsd-kind-icon">ID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L10">DataTypes.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L10">DataTypes.ts:10</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -559,7 +559,7 @@
 						<div class="tsd-signature tsd-kind-icon">db<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;BIGINT&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L11">DataTypes.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L11">DataTypes.ts:11</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -573,7 +573,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L15">DataTypes.ts:15</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L15">DataTypes.ts:15</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -596,7 +596,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L12">DataTypes.ts:12</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L12">DataTypes.ts:12</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -616,7 +616,7 @@
 					<div class="tsd-signature tsd-kind-icon">typeJSON<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L101">DataTypes.ts:101</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L101">DataTypes.ts:101</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -625,7 +625,7 @@
 						<div class="tsd-signature tsd-kind-icon">db<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;TEXT&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L102">DataTypes.ts:102</a></li>
+								<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L102">DataTypes.ts:102</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -639,7 +639,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L106">DataTypes.ts:106</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L106">DataTypes.ts:106</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -662,7 +662,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/8fddf9c/src/DataTypes.ts#L103">DataTypes.ts:103</a></li>
+										<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/5adc5dc/src/DataTypes.ts#L103">DataTypes.ts:103</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -686,6 +686,9 @@
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="_datatypes_.html">"<wbr>Data<wbr>Types"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_database_.html">"<wbr>Database"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_decorators_field_.html">"decorators/<wbr>Field"</a>
