@@ -104,6 +104,9 @@
   <span class="hljs-comment">/* options */</span>
 });
 </code></pre>
+				<p>You must then add all components your database must persist:</p>
+				<pre><code class="lang-ts">db.addComponentType(MyComponent);
+</code></pre>
 				<p>And then you can simply CRUD your entities:</p>
 				<pre><code class="lang-ts"><span class="hljs-comment">// Convenience method to create a new empty entity and</span>
 <span class="hljs-comment">// store it on the database</span>
@@ -119,6 +122,8 @@ db.update(entity);
 <span class="hljs-comment">// It will throw an error if the entity is not stored or is a new one</span>
 db.delete(entity);
 </code></pre>
+				<p>All methods are async so you can wait untill they are resolved using await
+				or using attach then/catch callbacks.</p>
 				<h2 id="license">License</h2>
 				<p>Apache 2.0</p>
 			</div>

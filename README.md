@@ -58,6 +58,12 @@ const db = new Database({
 });
 ```
 
+You must then add all components your database must persist:
+
+```ts
+db.addComponentType(MyComponent);
+```
+
 And then you can simply CRUD your entities:
 
 ```ts
@@ -75,6 +81,9 @@ db.update(entity);
 // It will throw an error if the entity is not stored or is a new one
 db.delete(entity);
 ```
+
+All methods are async so you can wait untill they are resolved using await
+or using attach then/catch callbacks.
 
 ## License
 

@@ -1,20 +1,58 @@
-import { Entity } from "@nova-engine/ecs";
+import { Entity, ComponentClass, Component } from "@nova-engine/ecs";
+import { PersistenceOptions } from ".";
+import { getPersistentMetadata } from "./services/meta";
 
 interface QueryOptions {}
 
 interface DatabaseOptions {}
 
 class Database {
-  constructor(options: DatabaseOptions) {}
+  private readonly _models: PersistenceOptions[];
 
-  async save(entity: Entity, options: Partial<QueryOptions> = {}) {}
+  constructor(options: DatabaseOptions) {
+    this._models = [];
+  }
 
-  async update(entity: Entity, options: Partial<QueryOptions> = {}) {}
+  async sync() {
+    throw new Error("Not Implemented");
+  }
 
-  async delete(entity: Entity, options: Partial<QueryOptions> = {}) {}
+  async save(entity: Entity, options: Partial<QueryOptions> = {}) {
+    throw new Error("Not Implemented");
+  }
+
+  async update(entity: Entity, options: Partial<QueryOptions> = {}) {
+    throw new Error("Not Implemented");
+  }
+
+  async delete(entity: Entity, options: Partial<QueryOptions> = {}) {
+    throw new Error("Not Implemented");
+  }
 
   async create(options: Partial<QueryOptions> = {}): Promise<Entity> {
-    return Promise.reject(new Error("Not Implemented"));
+    throw new Error("Not Implemented");
+  }
+
+  addComponentType<T extends Component>(component: ComponentClass<T>) {
+    const meta = getPersistentMetadata(component.prototype);
+    if (!meta || !meta.tableName) {
+      throw new Error("Database models must have a @Persistent decorator");
+    }
+    const tag = component.tag || component.name;
+    if (this._models.indexOf(meta) !== -1) {
+      throw new Error(
+        `Database already has the model "${tag}" already registered.`
+      );
+    }
+    this._models.push(meta);
+    return this;
+  }
+
+  addComponentTypes<T extends Component>(...components: ComponentClass<T>[]) {
+    for (let c of components) {
+      this.addComponentType(c);
+    }
+    return this;
   }
 }
 
