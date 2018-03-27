@@ -7,6 +7,50 @@ interface DataType {
   deserialize(value: any): Promise<any>;
 }
 
+interface Serializable {
+  serialize(): Promise<string>;
+}
+
+interface SerializableClass<T extends Serializable> {
+  new (): T;
+  deserialize(value: string): T;
+}
+
+enum BlobSize {
+  TINY,
+  REGULAR,
+  MEDIUM,
+  LONG
+}
+
+function blobBySize(size: BlobSize) {
+  switch (size) {
+    case BlobSize.TINY:
+      return "TINYBLOB";
+    case BlobSize.REGULAR:
+      return "BLOB";
+    case BlobSize.MEDIUM:
+      return "MEDIUMBLOB";
+    case BlobSize.LONG:
+      return "LONGBLOB";
+  }
+  return "BLOB";
+}
+
+function textBySize(size: BlobSize) {
+  switch (size) {
+    case BlobSize.TINY:
+      return "TINYTEXT";
+    case BlobSize.REGULAR:
+      return "TEXT";
+    case BlobSize.MEDIUM:
+      return "MEDIUMTEXT";
+    case BlobSize.LONG:
+      return "LONGTEXT";
+  }
+  return "TEXT";
+}
+
 const ID = {
   db: "BIGINT",
   async serialize(value: number) {
@@ -88,24 +132,65 @@ const DATE = {
   }
 };
 
-const BLOB = extend(() => {}, {
-  db: "BLOB",
-  async serialize(value: Buffer) {
-    return value;
+const BLOB = extend(
+  (size: BlobSize = BlobSize.REGULAR) => {
+    return {
+      db: blobBySize(size),
+      async serialize(value: Buffer) {
+        return value;
+      },
+      async deserialize(value: Buffer) {
+        return value;
+      }
+    };
   },
-  async deserialize(value: Buffer) {
-    return value;
+  {
+    db: "BLOB",
+    async serialize(value: Buffer) {
+      return value;
+    },
+    async deserialize(value: Buffer) {
+      return value;
+    }
   }
-});
+);
 
-const typeJSON = {
-  db: "TEXT",
-  async serialize(value: any) {
-    return JSON.stringify(value);
+const typeJSON = extend(
+  (size: BlobSize = BlobSize.REGULAR) => {
+    return {
+      db: textBySize(size),
+      async serialize(value: any) {
+        return JSON.stringify(value);
+      },
+      async deserialize(value: string) {
+        return JSON.parse(value);
+      }
+    };
   },
-  async deserialize(value: string) {
-    return JSON.parse(value);
+  {
+    db: "TEXT",
+    async serialize(value: any) {
+      return JSON.stringify(value);
+    },
+    async deserialize(value: string) {
+      return JSON.parse(value);
+    }
   }
+);
+
+const SERIALIZABLE = <T extends Serializable>(
+  serializable: SerializableClass<T>,
+  size: BlobSize = BlobSize.REGULAR
+) => {
+  return {
+    db: textBySize(size),
+    serialize(value: T) {
+      return value.serialize();
+    },
+    deserialize(value: string) {
+      return serializable.deserialize(value);
+    }
+  };
 };
 
 const DataTypes = {
@@ -115,7 +200,8 @@ const DataTypes = {
   BOOLEAN,
   DATE,
   JSON: typeJSON,
-  BLOB
+  BLOB,
+  SERIALIZABLE
 };
 
-export { DataTypes, DataType };
+export { DataTypes, DataType, Serializable, SerializableClass, BlobSize };

@@ -4,6 +4,19 @@ interface DataType {
     serialize(value: any): Promise<any>;
     deserialize(value: any): Promise<any>;
 }
+interface Serializable {
+    serialize(): Promise<string>;
+}
+interface SerializableClass<T extends Serializable> {
+    new (): T;
+    deserialize(value: string): T;
+}
+declare enum BlobSize {
+    TINY = 0,
+    REGULAR = 1,
+    MEDIUM = 2,
+    LONG = 3,
+}
 declare const DataTypes: {
     ID: {
         db: string;
@@ -38,15 +51,28 @@ declare const DataTypes: {
         serialize(value: Date): Promise<string>;
         deserialize(value: Date): Promise<Date>;
     };
-    JSON: {
+    JSON: ((size?: BlobSize) => {
+        db: string;
+        serialize(value: any): Promise<string>;
+        deserialize(value: string): Promise<any>;
+    }) & {
         db: string;
         serialize(value: any): Promise<string>;
         deserialize(value: string): Promise<any>;
     };
-    BLOB: (() => void) & {
+    BLOB: ((size?: BlobSize) => {
+        db: string;
+        serialize(value: Buffer): Promise<Buffer>;
+        deserialize(value: Buffer): Promise<Buffer>;
+    }) & {
         db: string;
         serialize(value: Buffer): Promise<Buffer>;
         deserialize(value: Buffer): Promise<Buffer>;
     };
+    SERIALIZABLE: <T extends Serializable>(serializable: SerializableClass<T>, size?: BlobSize) => {
+        db: string;
+        serialize(value: T): Promise<string>;
+        deserialize(value: string): T;
+    };
 };
-export { DataTypes, DataType };
+export { DataTypes, DataType, Serializable, SerializableClass, BlobSize };
