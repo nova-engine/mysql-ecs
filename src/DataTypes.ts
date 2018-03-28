@@ -13,7 +13,7 @@ interface Serializable {
 
 interface SerializableClass<T extends Serializable> {
   new (): T;
-  deserialize(value: string): T;
+  deserialize(value: string): Promise<T>;
 }
 
 enum BlobSize {

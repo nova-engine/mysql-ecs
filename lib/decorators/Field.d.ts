@@ -2,9 +2,7 @@ import { DataType } from "../DataTypes";
 interface FieldOptions {
     type: DataType;
     property: string;
-    primaryKey: boolean;
     allowNull: boolean;
-    autoIncrement: boolean;
 }
 interface FieldDecoratorOptions extends FieldOptions {
     column: string;

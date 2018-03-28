@@ -124,6 +124,20 @@ db.delete(entity);
 </code></pre>
 				<p>All methods are async so you can wait untill they are resolved using await
 				or using attach then/catch callbacks.</p>
+				<h2 id="testing">Testing</h2>
+				<p>Because this library is meant to be used with mysql, you will need to use a
+				development server to test it:</p>
+				<p>Install MySQL in your computer (or use a remote server)</p>
+				<p>Create a .ENV file at the root of this project.</p>
+				<p>Add the following values to your .ENV file:</p>
+				<pre><code><span class="hljs-attr">DB_TEST1_NAME</span>=mydb_test1
+<span class="hljs-attr">DB_TEST2_NAME</span>=mydb_test2
+<span class="hljs-attr">DB_TEST3_NAME</span>=mydb_test3
+<span class="hljs-attr">DB_TEST_USER</span>=test_user
+<span class="hljs-attr">DB_TEST_PASSWORD</span>=test_password
+<span class="hljs-attr">DB_TEST_HOST</span>=localhost
+<span class="hljs-attr">DB_TEST_PORT</span>=<span class="hljs-number">3306</span>
+</code></pre><p>You may need to change them according to your settings.</p>
 				<h2 id="license">License</h2>
 				<p>Apache 2.0</p>
 			</div>

@@ -9,7 +9,7 @@ interface Serializable {
 }
 interface SerializableClass<T extends Serializable> {
     new (): T;
-    deserialize(value: string): T;
+    deserialize(value: string): Promise<T>;
 }
 declare enum BlobSize {
     TINY = 0,
@@ -72,7 +72,7 @@ declare const DataTypes: {
     SERIALIZABLE: <T extends Serializable>(serializable: SerializableClass<T>, size?: BlobSize) => {
         db: string;
         serialize(value: T): Promise<string>;
-        deserialize(value: string): T;
+        deserialize(value: string): Promise<T>;
     };
 };
 export { DataTypes, DataType, Serializable, SerializableClass, BlobSize };

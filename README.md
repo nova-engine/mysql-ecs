@@ -85,6 +85,29 @@ db.delete(entity);
 All methods are async so you can wait untill they are resolved using await
 or using attach then/catch callbacks.
 
+## Testing
+
+Because this library is meant to be used with mysql, you will need to use a
+development server to test it:
+
+Install MySQL in your computer (or use a remote server)
+
+Create a .ENV file at the root of this project.
+
+Add the following values to your .ENV file:
+
+```
+DB_TEST1_NAME=mydb_test1
+DB_TEST2_NAME=mydb_test2
+DB_TEST3_NAME=mydb_test3
+DB_TEST_USER=test_user
+DB_TEST_PASSWORD=test_password
+DB_TEST_HOST=localhost
+DB_TEST_PORT=3306
+```
+
+You may need to change them according to your settings.
+
 ## License
 
 Apache 2.0

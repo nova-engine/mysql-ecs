@@ -11,9 +11,7 @@ import * as extend from "extend";
 interface FieldOptions {
   type: DataType;
   property: string;
-  primaryKey: boolean;
   allowNull: boolean;
-  autoIncrement: boolean;
 }
 
 interface FieldDecoratorOptions extends FieldOptions {
@@ -46,6 +44,22 @@ function Field(arg: Partial<FieldDecoratorOptions> | DataType = {}) {
     );
     if (!column) {
       column = s.underscored(property);
+    }
+    column = column.replace(/`/gi, "");
+    if (column.toLowerCase() == "entity_id") {
+      throw new Error(
+        "You cannot have 'entity_id' as a component property. It is a reserved property."
+      );
+    }
+    if (column.toLowerCase() == "created_at") {
+      throw new Error(
+        "You cannot have 'created_at' as a component property. It is a reserved property."
+      );
+    }
+    if (column.toLowerCase() == "updated_at") {
+      throw new Error(
+        "You cannot have 'updated_at' as a component property. It is a reserved property."
+      );
     }
     meta.fields[column] = metaOptions;
   };

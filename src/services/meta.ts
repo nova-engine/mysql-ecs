@@ -12,15 +12,7 @@ function ensurePersistentMetadata(target: any) {
   }
   meta = {
     tableName: null,
-    fields: {
-      id: {
-        type: DataTypes.ID,
-        property: "id",
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true
-      }
-    }
+    fields: {}
   };
   Reflect.defineMetadata(KEY, meta, target);
   return meta;

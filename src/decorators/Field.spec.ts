@@ -45,15 +45,13 @@ describe("@Field decorator", function() {
   });
   it("Can specify options", function() {
     class MyComponent {
-      @Field({ allowNull: true, autoIncrement: true, primaryKey: true })
+      @Field({ allowNull: true })
       test: number;
     }
     const meta = getPersistentMetadata(MyComponent.prototype);
     expect(meta.fields.test).to.not.be.undefined;
     expect(meta.fields.test.type).be.equals(DataTypes.NUMBER);
     expect(meta.fields.test.allowNull).be.equals(true);
-    expect(meta.fields.test.autoIncrement).be.equals(true);
-    expect(meta.fields.test.primaryKey).be.equals(true);
   });
   it("Property names are underscored", function() {
     class MyComponent {
@@ -71,5 +69,26 @@ describe("@Field decorator", function() {
     const meta = getPersistentMetadata(MyComponent.prototype);
     expect(meta.fields.custom).to.not.be.undefined;
     expect(meta.fields.custom.type).be.equals(DataTypes.NUMBER);
+  });
+  it("Shouldn't allow to define entity_id as a field", function() {
+    expect(() => {
+      class MyComponent {
+        @Field() entityId: number;
+      }
+    }).to.throw();
+  });
+  it("Shouldn't allow to define updated_at as a field", function() {
+    expect(() => {
+      class MyComponent {
+        @Field() updatedAt: number;
+      }
+    }).to.throw();
+  });
+  it("Shouldn't allow to define created_at as a field", function() {
+    expect(() => {
+      class MyComponent {
+        @Field() createdAt: number;
+      }
+    }).to.throw();
   });
 });

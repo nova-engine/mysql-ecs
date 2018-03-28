@@ -1,7 +1,10 @@
 import * as mysql from "mysql2";
+import * as uuid from "uuid/v4";
 
 import { Entity, ComponentClass, Component } from "@nova-engine/ecs";
 import { PersistenceOptions } from "./decorators/Persistent";
+import { FieldOptions } from "./decorators/Field";
+
 import { getPersistentMetadata } from "./services/meta";
 
 interface QueryOptions {
@@ -101,11 +104,12 @@ class DatabaseConnection {
 
 class Database {
   private readonly _models: PersistenceOptions[];
-
+  private readonly _entitiesTable: string;
   private readonly pool: mysql.Pool;
 
   constructor(options: DatabaseOptions) {
     this._models = [];
+    this._entitiesTable = "entities";
     const { ...poolOptions } = options;
     this.pool = mysql.createPool(poolOptions);
   }
@@ -119,8 +123,78 @@ class Database {
     });
   }
 
-  async sync() {
-    throw new Error("Not Implemented");
+  close(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.pool.end(err => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
+  }
+
+  async sync(options: Partial<QueryOptions> = {}) {
+    const connection = options.connection || (await this.connect());
+    const inTransaction = connection.inTransaction;
+    if (!inTransaction) {
+      await connection.beginTransaction();
+    }
+    try {
+      await this._createEntitiesTable(connection);
+      await this._createModelTables(connection);
+      if (!inTransaction) {
+        await connection.commit();
+      }
+      if (!options.connection) {
+        await connection.release();
+      }
+    } catch (error) {
+      if (!options.connection) {
+        await connection.release();
+      }
+      throw error;
+    }
+  }
+
+  private async _createEntitiesTable(connection: DatabaseConnection) {
+    await connection.query(`CREATE TABLE IF NOT EXISTS ${this._entitiesTable} ( 
+      \`id\` VARCHAR(36) NOT NULL PRIMARY KEY,
+      \`created_at\` DATETIME NOT NULL DEFAULT NOW(),
+      \`updated_at\` DATETIME NOT NULL DEFAULT NOW()
+    )`);
+  }
+
+  private async _createModelTables(connection: DatabaseConnection) {
+    for (let model of this._models) {
+      await this._createComponentTable(connection, model);
+    }
+  }
+
+  private async _createComponentTable(
+    connection: DatabaseConnection,
+    model: PersistenceOptions
+  ) {
+    await connection.query(`CREATE TABLE IF NOT EXISTS ${model.tableName} ( 
+      ${this._mapModelFields(model.fields)}
+    )`);
+  }
+
+  private _mapModelFields(fields: { [name: string]: FieldOptions }) {
+    const result = [
+      "`entity_id` VARCHAR(36) NOT NULL PRIMARY KEY",
+      "`created_at` DATETIME NOT NULL DEFAULT NOW()",
+      "`updated_at` DATETIME NOT NULL DEFAULT NOW() ON UPDATE NOW()"
+    ];
+    for (let name of Object.keys(fields)) {
+      let options = fields[name];
+      result.push(this._mapModelField(name, options));
+    }
+    return result.join(",");
+  }
+
+  private _mapModelField(name: string, options: FieldOptions) {
+    const isNull = options.allowNull ? "" : "NOT NULL";
+    const defaultValue = options.allowNull ? "DEFAULT NULL" : "";
+    return `${name} ${options.type.db} ${isNull} ${defaultValue}`;
   }
 
   async save(entity: Entity, options: Partial<QueryOptions> = {}) {
@@ -128,10 +202,13 @@ class Database {
       const newEntity = await this.create(options);
       entity.id = newEntity.id;
     }
-    await this.update(entity, options);
+    return await this.update(entity, options);
   }
 
   async update(entity: Entity, options: Partial<QueryOptions> = {}) {
+    if (entity.isNew()) {
+      throw new Error("Entity cannot be new to update.");
+    }
     const connection = options.connection || (await this.connect());
     const inTransaction = connection.inTransaction;
     if (!inTransaction) {
@@ -145,6 +222,10 @@ class Database {
           await this._updateInDatabase(connection, meta, component);
         }
       }
+      await connection.query(
+        `UPDATE ${this._entitiesTable} SET updated_at=NOW() WHERE id=?`,
+        [entity.id]
+      );
       if (!inTransaction) {
         await connection.commit();
       }
@@ -154,9 +235,10 @@ class Database {
       }
       throw e;
     }
+    return entity;
   }
 
-  async _updateInDatabase(
+  private async _updateInDatabase(
     connection: DatabaseConnection,
     meta: PersistenceOptions,
     component: Component
@@ -173,8 +255,43 @@ class Database {
     throw new Error("Not Implemented");
   }
 
+  private async _generateEntityId(connection: DatabaseConnection) {
+    let entity = null;
+    let id = uuid();
+    do {
+      entity = null;
+      let result = await connection.query(
+        `SELECT * from ${this._entitiesTable} WHERE id=?`,
+        [id]
+      );
+      if (Array.isArray(result) && result.length > 0) {
+        entity = result[0];
+        id = uuid();
+      }
+    } while (entity !== null);
+    return id;
+  }
+
   async create(options: Partial<QueryOptions> = {}): Promise<Entity> {
-    throw new Error("Not Implemented");
+    const connection = options.connection || (await this.connect());
+    try {
+      const id = await this._generateEntityId(connection);
+      await connection.query(
+        `INSERT INTO ${this._entitiesTable} (id) VALUES (?)`,
+        [id]
+      );
+      if (!options.connection) {
+        await connection.release();
+      }
+      const entity = new Entity();
+      entity.id = id;
+      return entity;
+    } catch (error) {
+      if (!options.connection) {
+        await connection.release();
+      }
+      throw error;
+    }
   }
 
   addComponentType<T extends Component>(component: ComponentClass<T>) {
@@ -192,7 +309,7 @@ class Database {
     return this;
   }
 
-  addComponentTypes<T extends Component>(...components: ComponentClass<T>[]) {
+  addComponentTypes(...components: ComponentClass<Component>[]) {
     for (let c of components) {
       this.addComponentType(c);
     }

@@ -1,6 +1,5 @@
 import * as mysql from "mysql2";
 import { Entity, ComponentClass, Component } from "@nova-engine/ecs";
-import { PersistenceOptions } from "./decorators/Persistent";
 interface QueryOptions {
     connection: DatabaseConnection;
     inTransaction: boolean;
@@ -22,16 +21,24 @@ declare class DatabaseConnection {
 }
 declare class Database {
     private readonly _models;
+    private readonly _entitiesTable;
     private readonly pool;
     constructor(options: DatabaseOptions);
     connect(): Promise<DatabaseConnection>;
-    sync(): Promise<void>;
-    save(entity: Entity, options?: Partial<QueryOptions>): Promise<void>;
-    update(entity: Entity, options?: Partial<QueryOptions>): Promise<void>;
-    _updateInDatabase(connection: DatabaseConnection, meta: PersistenceOptions, component: Component): Promise<void>;
+    close(): Promise<void>;
+    sync(options?: Partial<QueryOptions>): Promise<void>;
+    private _createEntitiesTable(connection);
+    private _createModelTables(connection);
+    private _createComponentTable(connection, model);
+    private _mapModelFields(fields);
+    private _mapModelField(name, options);
+    save(entity: Entity, options?: Partial<QueryOptions>): Promise<Entity>;
+    update(entity: Entity, options?: Partial<QueryOptions>): Promise<Entity>;
+    private _updateInDatabase(connection, meta, component);
     delete(entity: Entity, options?: Partial<QueryOptions>): Promise<void>;
+    private _generateEntityId(connection);
     create(options?: Partial<QueryOptions>): Promise<Entity>;
     addComponentType<T extends Component>(component: ComponentClass<T>): this;
-    addComponentTypes<T extends Component>(...components: ComponentClass<T>[]): this;
+    addComponentTypes(...components: ComponentClass<Component>[]): this;
 }
 export { Database, DatabaseOptions, QueryOptions, DatabaseConnection };
