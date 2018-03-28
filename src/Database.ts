@@ -158,6 +158,7 @@ class Database {
   private async _createEntitiesTable(connection: DatabaseConnection) {
     await connection.query(`CREATE TABLE IF NOT EXISTS ${this._entitiesTable} ( 
       \`id\` VARCHAR(36) NOT NULL PRIMARY KEY,
+      \`component_list\` TEXT NOT NULL,
       \`created_at\` DATETIME NOT NULL DEFAULT NOW(),
       \`updated_at\` DATETIME NOT NULL DEFAULT NOW()
     )`);
@@ -222,9 +223,22 @@ class Database {
           await this._updateInDatabase(connection, meta, component);
         }
       }
+      const componentList = JSON.stringify(
+        components
+          .map(c => {
+            let meta = getPersistentMetadata(c.type.prototype);
+            if (!meta) {
+              return null;
+            }
+            return meta.tableName;
+          })
+          .filter(i => i !== null)
+      );
       await connection.query(
-        `UPDATE ${this._entitiesTable} SET updated_at=NOW() WHERE id=?`,
-        [entity.id]
+        `UPDATE ${
+          this._entitiesTable
+        } SET updated_at=NOW(), component_list=? WHERE id=?`,
+        [componentList, entity.id]
       );
       if (!inTransaction) {
         await connection.commit();
@@ -277,8 +291,8 @@ class Database {
     try {
       const id = await this._generateEntityId(connection);
       await connection.query(
-        `INSERT INTO ${this._entitiesTable} (id) VALUES (?)`,
-        [id]
+        `INSERT INTO ${this._entitiesTable} (id, component_list) VALUES (?, ?)`,
+        [id, "[]"]
       );
       if (!options.connection) {
         await connection.release();
