@@ -124,6 +124,22 @@ db.delete(entity);
 </code></pre>
 				<p>All methods are async so you can wait untill they are resolved using await
 				or using attach then/catch callbacks.</p>
+				<p>The entity can be a regular instance of Entity, but if you want the engine
+				to handle the entity for you, use DatabaseEntity instead.</p>
+				<p>This package also includes a DatabaseEngine, for some utility to have an
+				easy engine with a database attached.</p>
+				<p>The Database engine adds some handy methods:</p>
+				<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span>(<span class="hljs-params">options?: QueryOptions</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt;</span>;
+</code></pre>
+				<p>Loads all the entities stored on the database.</p>
+				<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">save</span>(<span class="hljs-params">options?: QueryOptions</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt;</span>;
+</code></pre>
+				<p>Saves all entities on the database.</p>
+				<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processQueue</span>(<span class="hljs-params">options?: QueryOptions</span>): <span class="hljs-title">Promise</span>&lt;<span class="hljs-title">void</span>&gt;</span>;
+</code></pre>
+				<p>When an entity changes components or a new component is added or removed.
+					The queue adds a task into the list.
+				Using this method will help to clean the queue.</p>
 				<h2 id="testing">Testing</h2>
 				<p>Because this library is meant to be used with mysql, you will need to use a
 				development server to test it:</p>
@@ -154,6 +170,12 @@ db.delete(entity);
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_database_.html">"<wbr>Database"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_databaseengine_.html">"<wbr>Database<wbr>Engine"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_databaseentity_.html">"<wbr>Database<wbr>Entity"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_databasefamily_.html">"<wbr>Database<wbr>Family"</a>

@@ -6,6 +6,7 @@ import { PersistenceOptions } from "./decorators/Persistent";
 import { FieldOptions } from "./decorators/Field";
 
 import { getPersistentMetadata } from "./services/meta";
+import { DatabaseEntity } from "./DatabaseEntity";
 
 interface QueryOptions {
   connection: DatabaseConnection;
@@ -64,6 +65,24 @@ class DatabaseConnection {
         resolve(results);
       });
     });
+  }
+
+  async nestedTransaction(callback: () => Promise<any>) {
+    const inTransaction = this.inTransaction;
+    if (!inTransaction) {
+      this.beginTransaction();
+    }
+    try {
+      await callback();
+      if (!inTransaction) {
+        await this.commit();
+      }
+    } catch (e) {
+      if (!inTransaction) {
+        await this.rollback();
+      }
+      throw e;
+    }
   }
 
   beginTransaction(): Promise<void> {
@@ -162,24 +181,12 @@ class Database {
   async sync(options: Partial<QueryOptions> = {}) {
     const connection = options.connection || (await this.connect());
     connection.logQueriesToConsole = !!options.logQueriesToConsole;
-    const inTransaction = connection.inTransaction;
-    if (!inTransaction) {
-      await connection.beginTransaction();
-    }
-    try {
+    await connection.nestedTransaction(async () => {
       await this._createEntitiesTable(connection);
       await this._createModelTables(connection);
-      if (!inTransaction) {
-        await connection.commit();
-      }
-      if (!options.connection) {
-        await connection.release();
-      }
-    } catch (error) {
-      if (!options.connection) {
-        await connection.release();
-      }
-      throw error;
+    });
+    if (!options.connection) {
+      await connection.release();
     }
   }
 
@@ -245,11 +252,7 @@ class Database {
     }
     const connection = options.connection || (await this.connect());
     connection.logQueriesToConsole = !!options.logQueriesToConsole;
-    const inTransaction = connection.inTransaction;
-    if (!inTransaction) {
-      await connection.beginTransaction();
-    }
-    try {
+    await connection.nestedTransaction(async () => {
       const components = entity.listComponentsWithTypes();
       for (let { type, component } of components) {
         let meta = getPersistentMetadata(type.prototype);
@@ -274,14 +277,9 @@ class Database {
         } SET updated_at=NOW(), component_list=? WHERE id=?`,
         [componentList, entity.id]
       );
-      if (!inTransaction) {
-        await connection.commit();
-      }
-    } catch (e) {
-      if (!options.connection) {
-        await connection.release();
-      }
-      throw e;
+    });
+    if (!options.connection) {
+      await connection.release();
     }
     return entity;
   }
@@ -349,7 +347,7 @@ class Database {
       if (!options.connection) {
         await connection.release();
       }
-      const entity = new Entity();
+      const entity = new DatabaseEntity(this);
       entity.id = id;
       return entity;
     } catch (error) {
@@ -417,7 +415,7 @@ class Database {
     const entitiesById: { [s: string]: Entity } = {};
     const tables: string[] = [];
     for (let result of results) {
-      let entity = new Entity();
+      let entity = new DatabaseEntity(this);
       entity.id = result.id;
       entitiesById[result.id] = entity;
       let componentSet: string[] = JSON.parse(result.component_list);

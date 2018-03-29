@@ -85,6 +85,34 @@ db.delete(entity);
 All methods are async so you can wait untill they are resolved using await
 or using attach then/catch callbacks.
 
+The entity can be a regular instance of Entity, but if you want the engine
+to handle the entity for you, use DatabaseEntity instead.
+
+This package also includes a DatabaseEngine, for some utility to have an
+easy engine with a database attached.
+
+The Database engine adds some handy methods:
+
+```ts
+function load(options?: QueryOptions): Promise<void>;
+```
+
+Loads all the entities stored on the database.
+
+```ts
+function save(options?: QueryOptions): Promise<void>;
+```
+
+Saves all entities on the database.
+
+```ts
+function processQueue(options?: QueryOptions): Promise<void>;
+```
+
+When an entity changes components or a new component is added or removed.
+The queue adds a task into the list.
+Using this method will help to clean the queue.
+
 ## Testing
 
 Because this library is meant to be used with mysql, you will need to use a

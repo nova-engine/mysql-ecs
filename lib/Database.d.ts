@@ -21,6 +21,7 @@ declare class DatabaseConnection {
     logQueriesToConsole: boolean;
     constructor(connection: mysql.PoolConnection);
     query(query: string, params?: any[] | null): Promise<mysql.RowDataPacket | mysql.OkPacket | mysql.RowDataPacket[] | mysql.OkPacket[] | mysql.RowDataPacket[][]>;
+    nestedTransaction(callback: () => Promise<any>): Promise<void>;
     beginTransaction(): Promise<void>;
     commit(): Promise<void>;
     rollback(): Promise<void>;
