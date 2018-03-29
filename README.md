@@ -100,6 +100,7 @@ Add the following values to your .ENV file:
 DB_TEST1_NAME=mydb_test1
 DB_TEST2_NAME=mydb_test2
 DB_TEST3_NAME=mydb_test3
+DB_TEST4_NAME=mydb_test4
 DB_TEST_USER=test_user
 DB_TEST_PASSWORD=test_password
 DB_TEST_HOST=localhost

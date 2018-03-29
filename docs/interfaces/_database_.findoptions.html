@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PersistenceOptions | @nova-engine/mysql-ecs</title>
+	<title>FindOptions | @nova-engine/mysql-ecs</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_decorators_persistent_.html">&quot;decorators/Persistent&quot;</a>
+					<a href="../modules/_database_.html">&quot;Database&quot;</a>
 				</li>
 				<li>
-					<a href="_decorators_persistent_.persistenceoptions.html">PersistenceOptions</a>
+					<a href="_database_.findoptions.html">FindOptions</a>
 				</li>
 			</ul>
-			<h1>Interface PersistenceOptions</h1>
+			<h1>Interface FindOptions</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PersistenceOptions</span>
+						<span class="target">FindOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -84,8 +84,10 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_decorators_persistent_.persistenceoptions.html#fields" class="tsd-kind-icon">fields</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_decorators_persistent_.persistenceoptions.html#tablename" class="tsd-kind-icon">table<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_database_.findoptions.html#connection" class="tsd-kind-icon">connection</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_database_.findoptions.html#exclude" class="tsd-kind-icon">exclude</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_database_.findoptions.html#include" class="tsd-kind-icon">include</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_database_.findoptions.html#logqueriestoconsole" class="tsd-kind-icon">log<wbr>Queries<wbr>ToConsole</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,30 +96,42 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="fields" class="tsd-anchor"></a>
-					<h3>fields</h3>
-					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="connection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> connection</h3>
+					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <a href="../classes/_database_.databaseconnection.html" class="tsd-signature-type">DatabaseConnection</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6e80b16/src/decorators/Persistent.ts#L15">decorators/Persistent.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6e80b16/src/Database.ts#L17">Database.ts:17</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="_decorators_field_.fieldoptions.html" class="tsd-signature-type">FieldOptions</a></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="tablename" class="tsd-anchor"></a>
-					<h3>table<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">table<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<a name="exclude" class="tsd-anchor"></a>
+					<h3>exclude</h3>
+					<div class="tsd-signature tsd-kind-icon">exclude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6e80b16/src/decorators/Persistent.ts#L14">decorators/Persistent.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6e80b16/src/Database.ts#L20">Database.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="include" class="tsd-anchor"></a>
+					<h3>include</h3>
+					<div class="tsd-signature tsd-kind-icon">include<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ComponentClass</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6e80b16/src/Database.ts#L19">Database.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+					<a name="logqueriestoconsole" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> log<wbr>Queries<wbr>ToConsole</h3>
+					<div class="tsd-signature tsd-kind-icon">log<wbr>Queries<wbr>ToConsole<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/nova-engine/mysql-ecs/blob/6e80b16/src/Database.ts#L18">Database.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,7 +146,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_datatypes_.html">"<wbr>Data<wbr>Types"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_database_.html">"<wbr>Database"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -141,7 +155,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_decorators_field_.html">"decorators/<wbr>Field"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_decorators_persistent_.html">"decorators/<wbr>Persistent"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -154,26 +168,38 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../classes/_database_.database.html" class="tsd-kind-icon">Database</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../classes/_database_.databaseconnection.html" class="tsd-kind-icon">Database<wbr>Connection</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_decorators_persistent_.persistencedecoratoroptions.html" class="tsd-kind-icon">Persistence<wbr>Decorator<wbr>Options</a>
+						<a href="_database_.databaseoptions.html" class="tsd-kind-icon">Database<wbr>Options</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_decorators_persistent_.persistenceoptions.html" class="tsd-kind-icon">Persistence<wbr>Options</a>
+						<a href="_database_.findoptions.html" class="tsd-kind-icon">Find<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_decorators_persistent_.persistenceoptions.html#fields" class="tsd-kind-icon">fields</a>
+								<a href="_database_.findoptions.html#connection" class="tsd-kind-icon">connection</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_decorators_persistent_.persistenceoptions.html#tablename" class="tsd-kind-icon">table<wbr>Name</a>
+								<a href="_database_.findoptions.html#exclude" class="tsd-kind-icon">exclude</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_database_.findoptions.html#include" class="tsd-kind-icon">include</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
+								<a href="_database_.findoptions.html#logqueriestoconsole" class="tsd-kind-icon">log<wbr>Queries<wbr>ToConsole</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/_decorators_persistent_.html#persistent" class="tsd-kind-icon">Persistent</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_database_.queryoptions.html" class="tsd-kind-icon">Query<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>

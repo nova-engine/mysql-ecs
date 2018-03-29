@@ -12,7 +12,7 @@ declare class DatabaseFamily implements Family {
     private _cache;
     constructor(options: DatabaseFamilyOptions);
     readonly entities: Entity[];
-    findEntities(): Promise<void>;
+    findEntities(): Promise<Entity[]>;
     includesEntity: (entity: Entity) => boolean;
 }
 export { DatabaseFamily, DatabaseFamilyOptions };

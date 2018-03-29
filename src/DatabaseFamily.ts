@@ -28,7 +28,13 @@ class DatabaseFamily implements Family {
     return this._cache;
   }
 
-  async findEntities() {}
+  async findEntities() {
+    this._cache = await this._database.findByComponents({
+      include: this._include,
+      exclude: this._exclude
+    });
+    return this._cache;
+  }
 
   includesEntity = (entity: Entity) => {
     for (let include of this._include) {
